@@ -37,7 +37,6 @@ class camp_details_rooms(models.Model):
     roomoccupancy = fields.Integer('Room Occupancy')
     employee_room = fields.One2many('hr.employee','room_ids','Employee Room Information')
     
-    @api.multi 
     def name_get(self):
         res = super(camp_details_rooms, self).name_get()
         for rom in self:
