@@ -120,7 +120,6 @@
         <record id="camp_info_act" model="ir.actions.act_window">
             <field name="name">Camp Information</field>
             <field name="res_model">camp.details</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record id="camp_info_act_tree" model="ir.actions.act_window.view">
@@ -193,7 +192,6 @@
         <record id="open_view_camp_transfer_form" model="ir.actions.act_window">
             <field name="name">Camps Assign/Transfer</field>
             <field name="res_model">camp.transfer</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
