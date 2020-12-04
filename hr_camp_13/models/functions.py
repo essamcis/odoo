@@ -173,6 +173,6 @@ CREATE TRIGGER "Update_employee_occupation"
 
 
 
-    """
+    """)
 
 
