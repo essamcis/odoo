@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_camp_details,access_hr_camp_public,model_camp_details,base.group_user,1,1,1,1
+access_camp_details_rooms,hr_camp_transfer,model_camp_details_rooms,base.group_user,1,1,1,1
+hr_camp_transfer,hr_camp_transfer2,model_camp_transfer,base.group_user,1,1,1,1

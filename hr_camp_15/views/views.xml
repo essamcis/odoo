@@ -1,0 +1,228 @@
+<odoo>
+            
+         
+
+<!--Camp information-->
+
+<!--Camp information tree-->
+
+
+<record id="hr_cam_inf_tree" model="ir.ui.view">
+                <field name="name">Camp Information</field>
+                <field name="model">camp.details</field>
+                <field name="arch" type="xml">
+                  
+<tree string="camp.details">
+    <field name="campcode" select="1" > </field>
+    <field name="name" select="1"></field>
+    <field name="address"> </field>
+    <field name="campboss" select="1"> </field>
+    <field name="totalrooms"> </field>
+    <field name="noofrooms" > </field>
+    <field name="totalroomoccupancy"> </field>
+    <field name="totaloccupants"> </field>
+</tree>
+</field>
+</record>
+
+
+<!--Camp information form -->
+
+
+<record id="hr_cam_inf_form" model="ir.ui.view">
+        <field name="name">Camp Information</field>
+        <field name="model">camp.details</field>
+        <field name="arch" type="xml">
+     
+            <form string="Camp Information">
+               <group name="group_main" string="Labour Accommodation/Camp Management">
+                <group name="group_main_left">
+                    <field name="campcode" required="1"> </field>
+                    <field name="name" required="1"></field>
+                    <field name="address"> </field>
+                    <field name="campboss" required="1"> </field>
+                    
+                </group>
+                <group name="group_main_right">
+                        <!-- Left empty for extensions -->
+                    <field name="totalrooms" readonly="1"> </field>
+                    <field name="totalroomoccupancy" readonly="1" string="Total Beds Space"> </field>
+                    <field name="totaloccupants" readonly="1" string="Beds Occupant"> </field>
+                    <field name="noofrooms" required="1" string="Free Beds" readonly="1" > </field>
+                </group>
+            </group>
+   
+                <group string="Rooms Informations" name="room_detail">
+                    
+                    <field name="rooms" colspan="6" nolabel="1" > 
+                        <tree string="Room Information">
+                        <field name="name"></field>
+                        <field name="roomcapacity"></field>
+                        <field name="roomoccupancy"></field>
+                        </tree>
+                    </field>
+                </group> 
+                </form>
+                </field>   
+                </record>
+
+
+
+
+
+        <record id="hr_cam_inf_form_room" model="ir.ui.view">
+        <field name="name">Room Information</field>
+        <field name="model">camp.details.rooms</field>
+        <field name="arch" type="xml">
+     
+            <form string="Room Information">
+               <group name="group_main">
+                <group name="group_main_left">
+                    <field name="name" required="1"> </field>
+                    <field name="roomcapacity" required="1"></field>
+                    <field name="roomoccupancy" readonly="1"> </field>
+                    <newline></newline>
+                    <field name="note"> </field>
+                    
+                </group>
+                <group name="group_main_right">
+                        <!-- Left empty for extensions -->
+                    
+
+                </group>
+            </group>
+   
+                <group string="Rooms Employees Informations" name="room_detail" >
+                     <field name="employee_room" nolabel="1" readonly="1"> </field>
+                
+                </group> 
+            </form>
+        </field>   
+        </record>
+
+
+<record id="hr_cam_room_tree" model="ir.ui.view">
+                <field name="name">Room Tree</field>
+                <field name="model">camp.details.rooms</field>
+                <field name="arch" type="xml">
+                  
+<tree string="camp.details">
+    <field name="name" select="1"></field>
+    <field name="roomcapacity"> </field>
+    <field name="roomoccupancy" select="1"> </field>
+    
+</tree>
+</field>
+</record>
+
+<!--Camp information action-->
+
+        <record id="camp_info_act" model="ir.actions.act_window">
+            <field name="name">Camp Information</field>
+            <field name="res_model">camp.details</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="camp_info_act_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="hr_cam_inf_tree"/>
+            <field name="act_window_id" ref="camp_info_act"/>
+        </record>
+
+        <record id="camp_info_act_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_cam_inf_form"/>
+            <field name="act_window_id" ref="camp_info_act"/>
+        </record> 
+
+     
+
+
+
+
+    <!--Camp Transfer Form and Tree -->
+
+            <record id="camp_transfer_form_view" model="ir.ui.view">
+            <field name="name">camp_transfer.form.view</field>
+            <field name="model">camp.transfer</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Camp Transfer">
+                    <group name="group_main">
+                        <group name="group_main_left">
+                        
+                    <field name="emp_name" on_change="onchange_emp_id(emp_name)" required="1"/>
+                    <field name="camp_cur" on_change="onchange_camp_cur(camp_cur)" />
+                    <field name="cur_room" on_change="onchange_cur_room(cur_room)" />
+                    <field name="camp_no" required="1"/>
+                    <field name="trn_room" required="1"/> 
+                         </group>
+
+                    <group name="group_main_right">
+                        <!-- Left empty for extensions (('campcode_id','=',camp_no),-->
+                    </group>
+                     </group>                   
+                </form>
+            </field>
+            </record>
+
+   
+
+
+            <record id="camp_transfer_tree_view" model="ir.ui.view">
+            <field name="name">camp_transfer.tree.view</field>
+            <field name="model">camp.transfer</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Camp Transfer">
+                        <field name="emp_name"/>
+                        <field name="camp_cur"/>
+                        <field name="camp_no"/>
+                        <field name="trn_room"/>                                                                
+                                            
+                </tree>
+            </field>
+            </record>
+   
+
+
+    <!--Camp Transfer Actions -->    
+
+        <record id="open_view_camp_transfer_form" model="ir.actions.act_window">
+            <field name="name">Camps Assign/Transfer</field>
+            <field name="res_model">camp.transfer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+<!--Camp information menu-->    
+
+        <menuitem id="emp_occupation_menu"  name="Accommodation"  parent="hr.menu_hr_root" sequence="11"/>
+        <menuitem action="camp_info_act" id="camp_info_menu"     parent="emp_occupation_menu" sequence="1"/>
+        <menuitem action="open_view_camp_transfer_form" id="menu_view_camp_transfer_form"     parent="emp_occupation_menu" sequence="2"/>
+
+
+
+<!--Camp HR view extended -->              
+<record id="view_employee_form_camp" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+        
+            <xpath expr="//field[@name='work_phone']" position="after">
+                
+                
+                <field name="camp_ids" readonly="1"/>
+                <field name="room_ids" readonly="1"/>
+            </xpath>
+    </field>
+      
+</record>
+    
+
+
+
+</odoo>
